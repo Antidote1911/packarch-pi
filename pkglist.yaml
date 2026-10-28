@@ -23,6 +23,7 @@
 - name: "Multimedia"
   packages:
     - mkvtoolnix-gui
+    - filebot libmediainfo
 
 - name: "Office"
   packages:

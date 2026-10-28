@@ -43,6 +43,7 @@
     - code
     - emacs
     - qtcreator
+    - rustup
     - gnome-builder
     - kdevelop
     - netbeans
@@ -59,6 +60,8 @@
 
 - name: "Games"
   packages:
+    - steam
+    - bombicat
     - cachyos-gaming-applications cachyos-gaming-meta
     - aisleriot
     - mari0
@@ -150,8 +153,8 @@
 
 - name: "Office"
   packages:
-    - libreoffice-fresh libmythes
-    - libreoffice-still libmythes
+    - libreoffice-fresh libreoffice-fresh-fr libmythes
+    - libreoffice-still libreoffice-still-fr libmythes
     - joplin
     - onlyoffice-bin
     - wps-office wps-office-mime
@@ -167,6 +170,10 @@
   packages:
     - scrcpy
     - variety
+    - keepassxc
+    - deadpool
+    - system-config-printer cups cups-filters cups-pdf foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-ppds ghostscript gsfonts gutenprint
+    - orca espeak-ng mousetweaks
 
 - name: "Video"
   packages:

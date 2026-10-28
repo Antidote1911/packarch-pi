@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Packarch Package Installer</string>
+   <string>Packarch Installer</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>

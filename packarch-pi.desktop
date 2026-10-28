@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Installateur de paquets Packarch
+Name=Packarch Installer
 Comment=Installer facilement des applications, des paquets des dépôts et des Flatpak
 StartupWMClass=packarch-pi
 Exec=/usr/bin/packarch-pi

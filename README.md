@@ -1,5 +1,5 @@
 # packarch-pi
-Installateur de paquets Packarch : fork de [CachyOS Package Installer](https://github.com/CachyOS/packageinstaller) pour Packarch.
+Packarch Installer : fork de [CachyOS Package Installer](https://github.com/CachyOS/packageinstaller) pour Packarch.
 
 Changements par rapport à CachyOS :
 * interface en français seulement (`lang/packarch-pi_fr.ts`), aide et licence en français ;

@@ -1,11 +1,11 @@
-<?xml version='1.0' encoding='utf-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
     <name>MainWindow</name>
     <message>
-        <source>Packarch Package Installer</source>
-        <translation>Installateur de paquets Packarch</translation>
+        <source>Packarch Installer</source>
+        <translation>Packarch Installer</translation>
     </message>
     <message>
         <source>Popular Applications</source>
@@ -28,8 +28,8 @@
         <translation>rechercher</translation>
     </message>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:16pt;"&gt;Manage popular packages&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Greyed out items have already been installed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=" font-size:16pt;"&gt;Gérer les paquets populaires&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Les éléments grisés sont déjà installés.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Manage popular packages&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Greyed out items have already been installed.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:16pt;&quot;&gt;Gérer les paquets populaires&lt;/span&gt;&lt;/p&gt;&lt;p&gt;Les éléments grisés sont déjà installés.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Repo</source>
@@ -280,7 +280,7 @@
         <translation> installée</translation>
     </message>
     <message>
-        <source>Packarch includes this repository of flatpaks for the users' convenience only, and is not responsible for the functionality of the individual flatpaks themselves.</source>
+        <source>Packarch includes this repository of flatpaks for the users&apos; convenience only, and is not responsible for the functionality of the individual flatpaks themselves.</source>
         <translation>Packarch propose ce dépôt de Flatpak uniquement pour faciliter la vie des utilisateurs et n’est pas responsable du fonctionnement des Flatpak eux-mêmes.</translation>
     </message>
     <message>
@@ -406,8 +406,8 @@ Voulez-vous l’installer ?</translation>
         <translation>Quitter ?</translation>
     </message>
     <message>
-        <source>Process still running, quitting might leave the system in an unstable state.&lt;p&gt;&lt;b&gt;Are you sure you want to exit Packarch Package Installer?&lt;/b&gt;</source>
-        <translation>Une opération est en cours : quitter maintenant pourrait laisser le système dans un état instable.&lt;p&gt;&lt;b&gt;Voulez-vous vraiment quitter l’Installateur de paquets Packarch ?&lt;/b&gt;</translation>
+        <source>Process still running, quitting might leave the system in an unstable state.&lt;p&gt;&lt;b&gt;Are you sure you want to exit Packarch Installer?&lt;/b&gt;</source>
+        <translation>Une opération est en cours : quitter maintenant pourrait laisser le système dans un état instable.&lt;p&gt;&lt;b&gt;Voulez-vous vraiment quitter Packarch Installer ?&lt;/b&gt;</translation>
     </message>
     <message>
         <source>More &amp;info...</source>
@@ -475,7 +475,7 @@ Vérifiez bien la liste des paquets à supprimer.</translation>
         <translation>Suppression impossible</translation>
     </message>
     <message>
-        <source>Flathub is the main Flatpak remote and won't be removed</source>
+        <source>Flathub is the main Flatpak remote and won&apos;t be removed</source>
         <translation>Flathub est le dépôt Flatpak principal, il ne sera pas supprimé</translation>
     </message>
     <message>
@@ -530,7 +530,7 @@ L’application en a besoin pour fonctionner</translation>
         <translation>Impossible de lancer l’application</translation>
     </message>
     <message>
-        <source>Please don't run that application as root user!</source>
+        <source>Please don&apos;t run that application as root user!</source>
         <translation>Ne lancez pas cette application en root !</translation>
     </message>
     <message>

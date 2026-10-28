@@ -78,7 +78,7 @@ MainWindow::MainWindow(QWidget* parent) : QDialog(parent),
         if (alpm_manager.has_value()) {
             m_alpm_manager = std::make_unique<alpm::AlpmManager>(std::move(*alpm_manager));
         } else {
-            QMessageBox::critical(this, tr("Packarch Package Installer"), tr("Cannot initialize ALPM library"));
+            QMessageBox::critical(this, tr("Packarch Installer"), tr("Cannot initialize ALPM library"));
             return;
         }
     }
@@ -93,7 +93,7 @@ MainWindow::MainWindow(QWidget* parent) : QDialog(parent),
     setWindowFlags(Qt::Window);  // for the close, min and max buttons
 
     // Set window title
-    this->setWindowTitle(tr("Packarch Package Installer"));
+    this->setWindowTitle(tr("Packarch Installer"));
 
     setup();
 }
@@ -428,7 +428,7 @@ void MainWindow::fetch_net_pkglist() noexcept {
             return QString::fromStdString(std::move(pkglist_path));
         } else if (response.error.code == cpr::ErrorCode::OPERATION_TIMEDOUT) {
             spdlog::error("Unable to fetch pkglist. Timeout");
-            QMessageBox::warning(this, tr("Packarch Package Installer"), tr("Unable to fetch pkglist. Timeout!"));
+            QMessageBox::warning(this, tr("Packarch Installer"), tr("Unable to fetch pkglist. Timeout!"));
         }
         return {"/usr/lib/packarch-pi/pkglist.yaml"};
     }();
@@ -2019,7 +2019,7 @@ void MainWindow::on_push_cancel() noexcept {
     spdlog::debug("+++ {} +++", __PRETTY_FUNCTION__);
     if (m_cmd.state() != QProcess::NotRunning) {
         if (QMessageBox::warning(this, tr("Quit?"),
-                tr("Process still running, quitting might leave the system in an unstable state.<p><b>Are you sure you want to exit Packarch Package Installer?</b>"),
+                tr("Process still running, quitting might leave the system in an unstable state.<p><b>Are you sure you want to exit Packarch Installer?</b>"),
                 QMessageBox::Yes, QMessageBox::No)
             == QMessageBox::No) {
             return;

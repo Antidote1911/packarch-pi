@@ -1208,7 +1208,9 @@ bool MainWindow::checkInstalled(const QString& names) const noexcept {
         return false;
     }
 
-    return std::ranges::all_of(names.split('\n'), [this](auto&& name) { return m_installed_packages.contains(name.trimmed()); });
+    // Packarch: popular apps list their packages separated by spaces ("smplayer smplayer-skins")
+    static const QRegularExpression separators(QStringLiteral("\\s+"));
+    return std::ranges::all_of(names.split(separators, Qt::SkipEmptyParts), [this](auto&& name) { return m_installed_packages.contains(name); });
 }
 
 // Return true if all the packages in the list are installed

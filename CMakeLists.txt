@@ -6,8 +6,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 ## PROJECT
 ## name and version
 ##
-project(cachyos-pi
-        VERSION 1.6.2
+project(packarch-pi
+        VERSION 1.0.0
         LANGUAGES CXX)
 
 
@@ -93,8 +93,8 @@ qt_add_translation(QM_FILES ${TS_FILES})   # generate qm files
 
 add_custom_command(
     DEPENDS "${QM_FILES}"
-    OUTPUT "${CMAKE_BINARY_DIR}/cachyospi_locale.qrc"
-    COMMAND cp "${CMAKE_SOURCE_DIR}/cachyospi_locale.qrc" "${CMAKE_CURRENT_BINARY_DIR}"
+    OUTPUT "${CMAKE_BINARY_DIR}/packarchpi_locale.qrc"
+    COMMAND cp "${CMAKE_SOURCE_DIR}/packarchpi_locale.qrc" "${CMAKE_CURRENT_BINARY_DIR}"
     WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
@@ -103,7 +103,7 @@ add_custom_command(
 ##
 qt_add_executable(${PROJECT_NAME}
     ${RESOURCES}
-    images.qrc "${CMAKE_BINARY_DIR}/cachyospi_locale.qrc"
+    images.qrc "${CMAKE_BINARY_DIR}/packarchpi_locale.qrc"
     src/ini.hpp
     src/utils.hpp src/utils.cpp
     src/logging_utils.hpp src/logging_utils.cpp
@@ -146,25 +146,25 @@ install(
 )
 
 install(
-   FILES org.cachyos.cachyos-pi.pkexec.policy
+   FILES org.packarch.packarch-pi.pkexec.policy
    DESTINATION "${POLKITQT-1_POLICY_FILES_INSTALL_DIR}"
 )
 
 install(
    FILES "${PROJECT_SOURCE_DIR}/pkglist.yaml"
-   DESTINATION lib/cachyos-pi
+   DESTINATION lib/packarch-pi
 )
 file(GLOB HELP_FILES "${PROJECT_SOURCE_DIR}/help/*")
 install(
    FILES ${HELP_FILES}
-   DESTINATION share/doc/cachyos-packageinstaller
+   DESTINATION share/doc/packarch-pi
 )
 
 install(
-   FILES cachyos-pi.desktop
+   FILES packarch-pi.desktop
    DESTINATION ${CMAKE_INSTALL_DATADIR}/applications
 )
 install(
-   FILES icons/cachyos-pi.png
+   FILES icons/packarch-pi.png
    DESTINATION ${CMAKE_INSTALL_DATADIR}/icons/hicolor/scalable/apps
 )

@@ -1,5 +1,14 @@
-# cachyos-packageinstaller
-Simple Software Application Package Installer.
+# packarch-pi
+Installateur de paquets Packarch : fork de [CachyOS Package Installer](https://github.com/CachyOS/packageinstaller) pour Packarch.
+
+Changements par rapport à CachyOS :
+* interface en français seulement (`lang/packarch-pi_fr.ts`), aide et licence en français ;
+* la liste « Applications populaires » est téléchargée depuis ce dépôt
+  (`pkglist.yaml`, branche `master`) : la modifier ici suffit, sans republier le paquet.
+  Sans réseau, l'appli utilise `/usr/lib/packarch-pi/pkglist.yaml` ;
+* l'onglet Flatpak est affiché par défaut (`showFlatpak=false` dans
+  `~/.config/packarch/packarch-pi.conf` pour le masquer).
+
 
 Requirements
 ------------
@@ -22,8 +31,8 @@ rustup default stable
 
 ### Cloning the Source Code
 ```sh
-git clone https://github.com/cachyos/packageinstaller.git
-cd packageinstaller
+git clone https://github.com/Antidote1911/packarch-pi.git
+cd packarch-pi
 ```
 
 ### Building and Configuring

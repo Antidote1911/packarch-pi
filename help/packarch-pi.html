@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Aide : Installateur de paquets Packarch</title>
+</head>
+<body>
+<h1>Aide : Installateur de paquets Packarch</h1>
+<p>L’Installateur de paquets Packarch permet d’installer facilement une sélection d’applications, les paquets des dépôts et des Flatpak. C’est une version de CachyOS Package Installer adaptée à Packarch.</p>
+
+<p>On le trouve dans le menu Système ≻ Installateur de paquets Packarch, ou dans Packarch Hello. Le mot de passe est demandé au moment d’installer ou de supprimer des paquets.</p>
+
+<img src="1.jpg" alt="Gérer les paquets populaires" />
+
+<h2>Applications populaires</h2>
+
+	<ul>
+		<li>Dépliez les catégories avec la petite flèche pour voir les paquets proposés ; l’icône d’information donne plus de détails sur chaque paquet.</li>
+		<li>Le champ de recherche filtre la liste selon le nom des applications.</li>
+		<li>Cochez ce que vous voulez, puis cliquez sur Installer.</li>
+		<li>La sortie du terminal s’affiche pendant la mise à jour des dépôts puis l’installation des paquets.</li>
+		<li>Si un paquet est déjà installé, vous pouvez le désinstaller ou le réinstaller.</li>
+		<li>En cas de problème, le journal se trouve dans ~/.cache/packarch/packarch-pi/packarchpi.log (et packarchpi.log.old pour la session précédente).</li>
+	</ul>
+
+<h2>Dépôts</h2>
+
+<img src="2.jpg" alt="Dépôts" />
+
+<p>Cet onglet donne accès à tous les paquets des dépôts configurés dans pacman. Ses fonctions sont limitées : il complète pacman, il ne le remplace pas.</p>
+
+	<ul>
+		<li>Les paquets se gèrent de la même façon que dans l’onglet Applications populaires.</li>
+		<li>On peut aussi y mettre à jour tout le système et supprimer les paquets orphelins.</li>
+	</ul>
+
+<h2>Flatpak</h2>
+
+<img src="3.jpg" alt="Flatpak" />
+
+<p>Les <a href="https://flatpak.org/">Flatpak</a> sont des paquets qui contiennent toutes leurs dépendances et qui fonctionnent sur la plupart des distributions Linux.</p>
+
+	<ul>
+		<li>Ils ne sont pas parfaits : certains fonctionnent mal ou ne suivent pas votre thème.</li>
+		<li>Le premier Flatpak installé télécharge souvent un gros runtime (environ 2 Go) ; les suivants le réutilisent en général.</li>
+		<li>Le dépôt « flathub » est utilisé par défaut. On peut en ajouter d’autres dans la fenêtre Avancé.</li>
+		<li>La fenêtre Avancé permet aussi d’installer un Flatpak à partir d’un fichier .flatpakref.</li>
+	</ul>
+
+<img src="4.jpg" alt="" />
+</body>
+</html>

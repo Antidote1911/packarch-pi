@@ -89,13 +89,9 @@ void initTranslations(QTranslator& qtTranslatorBase, QTranslator& qtTranslator, 
     QApplication::removeTranslator(&translatorBase);
     QApplication::removeTranslator(&translator);
 
-    // Get desired locale (e.g. "de_DE")
-    // 1) System default language
-    const auto lang_territory = QLocale::system().name();
-
-    // Convert to "de" only by truncating "_DE"
-    QString lang = lang_territory;
-    lang.truncate(lang_territory.lastIndexOf('_'));
+    // Packarch: the interface is always in French, whatever the system locale
+    const QString lang_territory = QStringLiteral("fr_FR");
+    const QString lang           = QStringLiteral("fr");
 
     // Load language files for configured locale:
     // - First load the translator for the base language, without territory
@@ -117,12 +113,12 @@ void initTranslations(QTranslator& qtTranslatorBase, QTranslator& qtTranslator, 
         QApplication::installTranslator(&qtTranslator);
     }
 
-    // Load e.g. cachyos-kernel-manager_de.qm (shortcut "de" needs to be defined in bitcoin.qrc)
+    // Load e.g. packarch-pi_fr.qm (shortcut "de" needs to be defined in bitcoin.qrc)
     if (translatorBase.load(lang, ":/translations/")) {
         QApplication::installTranslator(&translatorBase);
     }
 
-    // Load e.g. cachyos-kernel-manager_de_DE.qm (shortcut "de_DE" needs to be defined in bitcoin.qrc)
+    // Load e.g. packarch-pi_fr_FR.qm (shortcut "de_DE" needs to be defined in bitcoin.qrc)
     if (translator.load(lang_territory, ":/translations/")) {
         QApplication::installTranslator(&translator);
     }
@@ -139,13 +135,13 @@ auto main(int argc, char** argv) -> std::int32_t {
 #endif
 
     /// 2. Application identification
-    QApplication::setOrganizationName("cachyos");
-    QApplication::setOrganizationDomain("cachyos.org");
-    QApplication::setApplicationName("cachyos-pi");
+    QApplication::setOrganizationName("packarch");
+    QApplication::setOrganizationDomain("github.com/Antidote1911");
+    QApplication::setApplicationName("packarch-pi");
 
     // Set application attributes
     const QApplication app(argc, argv);
-    QApplication::setWindowIcon(QIcon(":/icons/cachyos-pi.png"));
+    QApplication::setWindowIcon(QIcon(":/icons/packarch-pi.png"));
 
     /// 3. Initialization of translations
     QTranslator qtTranslatorBase;
@@ -154,7 +150,7 @@ auto main(int argc, char** argv) -> std::int32_t {
     QTranslator translator;
     initTranslations(qtTranslatorBase, qtTranslator, translatorBase, translator);
 
-    QSharedMemory sharedMemoryLock("CachyOS-PI-lock");
+    QSharedMemory sharedMemoryLock("Packarch-PI-lock");
     if (IsInstanceAlreadyRunning(sharedMemoryLock)) {
         QMessageBox::critical(nullptr, QObject::tr("Error"),
             QObject::tr("Instance of the program is already running! Please close it first"));
@@ -195,12 +191,12 @@ auto main(int argc, char** argv) -> std::int32_t {
     }
 
     const auto& cache_path   = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-    const auto& log_filepath = fmt::format("{}/cachyospi.log", cache_path.toStdString());
+    const auto& log_filepath = fmt::format("{}/packarchpi.log", cache_path.toStdString());
     if (fs::exists(log_filepath)) {
         std::ifstream currentfile{log_filepath};
         const std::string file_data{std::istreambuf_iterator<char>(currentfile), std::istreambuf_iterator<char>()};
         std::ofstream oldlogfile{fmt::format("{}.old", log_filepath)};
-        oldlogfile << "-----------------------------------------------------------\nCACHYOSPI SESSION\n"
+        oldlogfile << "-----------------------------------------------------------\nPACKARCHPI SESSION\n"
                       "-----------------------------------------------------------\n";
         oldlogfile << file_data;
         fs::remove(log_filepath);

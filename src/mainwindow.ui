@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>CachyOS Package Installer</string>
+   <string>Packarch Package Installer</string>
   </property>
   <property name="sizeGripEnabled">
    <bool>false</bool>

@@ -7,7 +7,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 ## name and version
 ##
 project(packarch-pi
-        VERSION 1.0.1
+        VERSION 1.0.2
         LANGUAGES CXX)
 
 

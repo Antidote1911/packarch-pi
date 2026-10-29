@@ -2,17 +2,17 @@
   packages:
     - discord
 
-- name: "Development"
+- name: "Développement"
   packages:
     - qtcreator
     - rustup
 
-- name: "Games"
+- name: "Jeux"
   packages:
     - steam
     - bombicat
 
-- name: "Graphics"
+- name: "Graphisme"
   packages:
     - gimp
 
@@ -20,24 +20,24 @@
   packages:
     - filezilla
 
-- name: "Multimedia"
+- name: "Multimédia"
   packages:
     - mkvtoolnix-gui
     - filebot libmediainfo
     - freac
 
-- name: "Office"
+- name: "Bureautique"
   packages:
     - libreoffice-fresh libreoffice-fresh-fr libmythes
 
-- name: "Other"
+- name: "Divers"
   packages:
     - keepassxc
     - deadpool
     - system-config-printer cups cups-filters cups-pdf foomatic-db foomatic-db-engine foomatic-db-gutenprint-ppds foomatic-db-nonfree foomatic-db-nonfree-ppds foomatic-db-ppds ghostscript gsfonts gutenprint
     - orca espeak-ng mousetweaks
 
-- name: "Video"
+- name: "Vidéo"
   packages:
     - vlc
     - smplayer smplayer-skins smplayer-themes

@@ -1,0 +1,21 @@
+# Descriptions en français des logiciels de pkglist.yaml, par nom du premier
+# paquet de la ligne. Un logiciel absent d'ici garde la description (en
+# anglais) de la base pacman.
+
+discord: "Discussion vocale et textuelle tout-en-un pour les joueurs"
+qtcreator: "Environnement de développement intégré léger et multiplateforme"
+rustup: "Installateur de la toolchain Rust (la toolchain stable est activée à l'installation)"
+steam: "Plateforme de distribution de jeux de Valve"
+bombicat: "Un démineur avec des chats, écrit en Rust avec egui"
+gimp: "Programme de manipulation d'images GNU"
+filezilla: "Client FTP, FTPS et SFTP rapide et fiable"
+mkvtoolnix-gui: "Outils pour créer, modifier et inspecter des fichiers Matroska"
+filebot: "Le renommeur ultime de séries et de films"
+freac: "Convertisseur audio et extracteur de CD, compatible avec de nombreux formats et encodeurs"
+libreoffice-fresh: "Suite bureautique LibreOffice, branche avec les dernières fonctionnalités"
+keepassxc: "Gestionnaire de mots de passe multiplateforme, version communautaire de KeePass"
+deadpool: "Générateur de mots de passe aléatoires robustes (ligne de commande et interface graphique)"
+system-config-printer: "Outil de configuration des imprimantes CUPS et applet d'état"
+orca: "Lecteur d'écran pour les personnes aveugles ou malvoyantes"
+vlc: "Lecteur et framework multimédia libre et multiplateforme"
+smplayer: "Lecteur multimédia avec codecs intégrés, lit pratiquement tous les formats audio et vidéo"

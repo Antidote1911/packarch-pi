@@ -138,6 +138,7 @@ class MainWindow : public QDialog {
     void listFlatpakRemotes() noexcept;
     void listSizeInstalledFP() noexcept;
     void fetch_net_pkglist() noexcept;
+    void load_descriptions(const QString& path) noexcept;
     void processFile(const std::string& group, const std::string& category, const std::vector<std::string>& names) noexcept;
     void refreshPopularApps() noexcept;
     void removeDuplicatesFP() noexcept;
@@ -221,6 +222,7 @@ class MainWindow : public QDialog {
 
     Cmd m_cmd{};
     QList<QStringList> m_popular_apps;
+    std::map<std::string, QString> m_descriptions{};
     QLocale m_locale{};
     std::map<QString, QStringList> m_repo_list{};
     QMetaObject::Connection m_conn{};

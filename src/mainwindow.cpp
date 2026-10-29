@@ -399,39 +399,72 @@ void processMap(MainWindow& window, const std::string& parent_category, ryml::No
     }
 }
 
+// Downloads NAME from the packarch-pi GitHub repository into the config
+// directory and returns its path, or the copy installed with the package if the
+// download fails (timed_out: the server did not answer)
+static auto fetch_net_file(std::string_view name, bool& timed_out) noexcept -> QString {
+    auto progress_callback = []([[maybe_unused]] auto&& downloadTotal, [[maybe_unused]] auto&& downloadNow, [[maybe_unused]] auto&& uploadTotal,
+                                 [[maybe_unused]] auto&& uploadNow, [[maybe_unused]] auto&& userdata) -> bool { return true; };
+
+    const auto& file_url      = cpr::Url{fmt::format("https://raw.githubusercontent.com/Antidote1911/packarch-pi/master/{}", name)};
+    const auto& fetch_timeout = cpr::Timeout{100 * 1000};  // 100s
+    const auto& response      = cpr::Get(file_url, fetch_timeout, cpr::ProgressCallback(std::move(progress_callback)));
+
+    // Packarch: also check the HTTP status, a 404 page is not a pkglist
+    if (response.error.code == cpr::ErrorCode::OK && response.status_code == 200) {
+        const auto& config_path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation).toStdString();
+        auto file_path          = fmt::format("{}/{}", config_path, name);
+        if (!fs::exists(config_path)) {
+            std::error_code err{};
+            fs::create_directories(config_path, err);
+            if (err) {
+                spdlog::error("failed to create directories: {}", err.message());
+            }
+        }
+
+        std::ofstream file{file_path};
+        file << response.text;
+        return QString::fromStdString(std::move(file_path));
+    } else if (response.error.code == cpr::ErrorCode::OPERATION_TIMEDOUT) {
+        spdlog::error("Unable to fetch {}. Timeout", name);
+        timed_out = true;
+    }
+    return QString::fromStdString(fmt::format("/usr/lib/packarch-pi/{}", name));
+}
+
+// Packarch: French descriptions of the popular apps, by package name
+// (descriptions.yaml; the description of the pacman database otherwise)
+void MainWindow::load_descriptions(const QString& path) noexcept {
+    QFile file(path);
+    if (!file.open(QFile::ReadOnly | QFile::Text)) {
+        spdlog::error("Could not open: {}", file.fileName().toStdString());
+        return;
+    }
+    const auto& src    = file.readAll().toStdString();
+    ryml::Tree tree    = ryml::parse_in_arena(ryml::to_csubstr(src));
+    ryml::NodeRef root = tree.rootref();
+    if (!root.is_map()) {
+        return;
+    }
+    for (auto&& child : root.children()) {
+        if (child.has_key() && child.has_val()) {
+            m_descriptions[std::string{child.key().str, child.key().len}] = QString::fromUtf8(child.val().str, static_cast<qsizetype>(child.val().len));
+        }
+    }
+}
+
 // Load data from Github repo
 void MainWindow::fetch_net_pkglist() noexcept {
     spdlog::debug("+++ {} +++", __PRETTY_FUNCTION__);
 
-    const auto& fetch_filepath = [this]() -> QString {
-        auto progress_callback = []([[maybe_unused]] auto&& downloadTotal, [[maybe_unused]] auto&& downloadNow, [[maybe_unused]] auto&& uploadTotal,
-                                     [[maybe_unused]] auto&& uploadNow, [[maybe_unused]] auto&& userdata) -> bool { return true; };
-
-        const auto& file_url      = cpr::Url{"https://raw.githubusercontent.com/Antidote1911/packarch-pi/master/pkglist.yaml"};
-        const auto& fetch_timeout = cpr::Timeout{100 * 1000};  // 100s
-        const auto& response      = cpr::Get(file_url, fetch_timeout, cpr::ProgressCallback(std::move(progress_callback)));
-
-        // Packarch: also check the HTTP status, a 404 page is not a pkglist
-        if (response.error.code == cpr::ErrorCode::OK && response.status_code == 200) {
-            const auto& config_path = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation).toStdString();
-            auto pkglist_path       = fmt::format("{}/pkglist.yaml", config_path);
-            if (!fs::exists(config_path)) {
-                std::error_code err{};
-                fs::create_directories(config_path, err);
-                if (err) {
-                    spdlog::error("failed to create directories: {}", err.message());
-                }
-            }
-
-            std::ofstream pkglistyaml{pkglist_path};
-            pkglistyaml << response.text;
-            return QString::fromStdString(std::move(pkglist_path));
-        } else if (response.error.code == cpr::ErrorCode::OPERATION_TIMEDOUT) {
-            spdlog::error("Unable to fetch pkglist. Timeout");
-            QMessageBox::warning(this, tr("Packarch Installer"), tr("Unable to fetch pkglist. Timeout!"));
-        }
-        return {"/usr/lib/packarch-pi/pkglist.yaml"};
-    }();
+    bool timed_out{};
+    const auto& fetch_filepath = fetch_net_file("pkglist.yaml", timed_out);
+    if (timed_out) {
+        QMessageBox::warning(this, tr("Packarch Installer"), tr("Unable to fetch pkglist. Timeout!"));
+        load_descriptions(QStringLiteral("/usr/lib/packarch-pi/descriptions.yaml"));
+    } else {
+        load_descriptions(fetch_net_file("descriptions.yaml", timed_out));
+    }
 
     QFile file(fetch_filepath);
     if (!file.open(QFile::ReadOnly | QFile::Text)) {
@@ -457,7 +490,9 @@ void MainWindow::processFile(const std::string& group, const std::string& catego
     QString install_names;
     QString uninstall_names;
 
-    if (auto pkg = m_alpm_manager->get_package_view(names[0])) {
+    if (const auto& it = m_descriptions.find(names[0]); it != m_descriptions.end()) {
+        description = it->second;
+    } else if (auto pkg = m_alpm_manager->get_package_view(names[0])) {
         description = QString(pkg->desc.data());
     }
 

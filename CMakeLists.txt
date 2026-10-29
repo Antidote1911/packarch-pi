@@ -7,7 +7,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 ## name and version
 ##
 project(packarch-pi
-        VERSION 1.0.4
+        VERSION 1.0.5
         LANGUAGES CXX)
 
 
@@ -151,7 +151,7 @@ install(
 )
 
 install(
-   FILES "${PROJECT_SOURCE_DIR}/pkglist.yaml"
+   FILES "${PROJECT_SOURCE_DIR}/pkglist.yaml" "${PROJECT_SOURCE_DIR}/descriptions.yaml"
    DESTINATION lib/packarch-pi
 )
 file(GLOB HELP_FILES "${PROJECT_SOURCE_DIR}/help/*")

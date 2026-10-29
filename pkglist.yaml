@@ -24,6 +24,7 @@
   packages:
     - mkvtoolnix-gui
     - filebot libmediainfo
+    - freac
 
 - name: "Office"
   packages:

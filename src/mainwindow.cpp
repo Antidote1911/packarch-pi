@@ -1010,7 +1010,17 @@ bool MainWindow::install(const QString& names) noexcept {
     displayOutput();
 
     const auto& cmd_str = QStringLiteral("pkexec pacman -S ") + names;
-    return m_cmd.run(cmd_str);
+    if (!m_cmd.run(cmd_str)) {
+        return false;
+    }
+
+    // rustup comes without a default toolchain: enable stable for the user,
+    // unless one is already set
+    if (names.split(' ', Qt::SkipEmptyParts).contains(QStringLiteral("rustup"))
+        && !m_cmd.run(QStringLiteral("rustup default"), true)) {
+        return m_cmd.run(QStringLiteral("rustup default stable"));
+    }
+    return true;
 }
 
 // install a list of application and run postprocess for each of them.

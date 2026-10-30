@@ -48,7 +48,7 @@ Second, build it:
 
 ### Running the Binary
 ```sh
-./build/RelWithDebInfo/cachyos-pi
+./build/RelWithDebInfo/packarch-pi
 ```
 
 ### Easy way to verify pkglist.yaml in fish

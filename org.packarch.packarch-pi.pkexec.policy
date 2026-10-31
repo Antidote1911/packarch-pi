@@ -4,7 +4,7 @@
 <policyconfig>
 
   <vendor>packarch-pi</vendor>
-  <vendor_url>https://github.com/Antidote1911/packarch-pi</vendor_url>
+  <vendor_url>https://github.com/packarch/packarch-pi</vendor_url>
 
   <action id="org.packarch.packarch-pi.pkexec.policy.run">
     <description>Lancer le programme</description>

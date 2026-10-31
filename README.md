@@ -31,7 +31,7 @@ rustup default stable
 
 ### Cloning the Source Code
 ```sh
-git clone https://github.com/Antidote1911/packarch-pi.git
+git clone https://github.com/packarch/packarch-pi.git
 cd packarch-pi
 ```
 

@@ -406,7 +406,7 @@ static auto fetch_net_file(std::string_view name, bool& timed_out) noexcept -> Q
     auto progress_callback = []([[maybe_unused]] auto&& downloadTotal, [[maybe_unused]] auto&& downloadNow, [[maybe_unused]] auto&& uploadTotal,
                                  [[maybe_unused]] auto&& uploadNow, [[maybe_unused]] auto&& userdata) -> bool { return true; };
 
-    const auto& file_url      = cpr::Url{fmt::format("https://raw.githubusercontent.com/Antidote1911/packarch-pi/master/{}", name)};
+    const auto& file_url      = cpr::Url{fmt::format("https://raw.githubusercontent.com/packarch/packarch-pi/master/{}", name)};
     const auto& fetch_timeout = cpr::Timeout{100 * 1000};  // 100s
     const auto& response      = cpr::Get(file_url, fetch_timeout, cpr::ProgressCallback(std::move(progress_callback)));
 
@@ -1616,7 +1616,7 @@ void MainWindow::on_push_install() noexcept {
 // About button clicked
 void MainWindow::on_push_about() noexcept {
     const auto& msgbox_title = tr("About %1").arg(this->windowTitle());
-    const auto& msgbox_body  = "<p align=\"center\"><b><h2>" + this->windowTitle() + "</h2></b></p><p align=\"center\">" + tr("Version: ") + APP_VERSION + "</p><p align=\"center\"><h3>" + tr("Package Installer for Packarch") + R"(</h3></p><p align="center"><a href="https://github.com/Antidote1911/packarch-pi">https://github.com/Antidote1911/packarch-pi</a><br /></p><p align="center">)" + tr("Copyright (c) CachyOS, Packarch") + "<br /><br /></p>";
+    const auto& msgbox_body  = "<p align=\"center\"><b><h2>" + this->windowTitle() + "</h2></b></p><p align=\"center\">" + tr("Version: ") + APP_VERSION + "</p><p align=\"center\"><h3>" + tr("Package Installer for Packarch") + R"(</h3></p><p align="center"><a href="https://github.com/packarch/packarch-pi">https://github.com/packarch/packarch-pi</a><br /></p><p align="center">)" + tr("Copyright (c) CachyOS, Packarch") + "<br /><br /></p>";
     about::display_about_msgbox(msgbox_title, msgbox_body,
         QStringLiteral("file:///usr/share/doc/packarch-pi/license.html"));
 }
